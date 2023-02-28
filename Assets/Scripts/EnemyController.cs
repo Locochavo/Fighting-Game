@@ -131,6 +131,8 @@ public class EnemyController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckCollider.position, groundCheckRadius, groundLayer);
     }
+
+ 
 }
 
 
