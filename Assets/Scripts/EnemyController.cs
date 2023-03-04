@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float worldLimtmin;
     [SerializeField] private float worldLimtmax;
 
+
+
     private Raycast ray;
     private Stats stats;
     private CharacterAnimations characterAnimations;
@@ -33,6 +35,7 @@ public class EnemyController : MonoBehaviour
         ray = GetComponent<Raycast>();
         stats = GetComponent<Stats>();
         isFacingRight = true;
+
     }
 
     private void Update()
@@ -55,6 +58,7 @@ public class EnemyController : MonoBehaviour
                     FacingRight();
                     if (distance < attackDistance) {
                         Attack(PlayerTarget);
+                        UiManager.Instance.TakeDamage();
                     }
                     else {
 
@@ -80,6 +84,7 @@ public class EnemyController : MonoBehaviour
                     if (distance < attackDistance) {
 
                         Attack(PlayerTarget);
+                        UiManager.Instance.TakeDamage();
                     }
                     else {
 
@@ -118,7 +123,11 @@ public class EnemyController : MonoBehaviour
     private void Attack(GameObject target)
     {
         characterAnimations.Punch();
+    
+
         target.GetComponent<Stats>().TakeDamage(stats.damage);
+      
+
     }
 
     private void Jump()

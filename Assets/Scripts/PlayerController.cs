@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
 
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Raycast ray;
     private CharacterAnimations characterAnimations;
     private Rigidbody2D rb;
+
 
     private float move;
     public bool isJumping;
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
         characterAnimations = GetComponent<CharacterAnimations>();
         stats = GetComponent<Stats>();
         ray = GetComponent<Raycast>();
+      
     }
 
     private void Update()
@@ -80,7 +83,11 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
+
         characterAnimations.Punch();
+     
+
+
 
         if (ray.LookRight() == null) return;
 
@@ -94,6 +101,7 @@ public class PlayerController : MonoBehaviour
 
             if (distance < 2f) {
                 ray.LookRight().GetComponent<Stats>().TakeDamage(stats.damage);
+                UiManager.Instance.TakeDamage();
             }
 
         }

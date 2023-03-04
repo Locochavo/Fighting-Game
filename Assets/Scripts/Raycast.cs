@@ -1,7 +1,9 @@
 using UnityEngine;
 
+
+
 public class Raycast : MonoBehaviour
-{
+{   
     public GameObject LookRight()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);

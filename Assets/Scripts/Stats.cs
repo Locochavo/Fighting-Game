@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Stats : MonoBehaviour
 {
     public int damage = 5;
     public int maxhealth = 100;
     public int currentHealth;
+    public Image healthBar;
 
 
     // Start is called before the first frame update
@@ -20,6 +23,7 @@ public class Stats : MonoBehaviour
     {
 
         currentHealth -= damage;
+        healthBar.fillAmount= damage;   
 
         if (currentHealth < 1)
         {
