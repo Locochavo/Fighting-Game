@@ -58,7 +58,10 @@ public class EnemyController : MonoBehaviour
                     FacingRight();
                     if (distance < attackDistance) {
                         Attack(PlayerTarget);
-                        UiManager.Instance.TakeDamage();
+
+                        Stats playerStats = ray.LookRight().GetComponent<Stats>();
+
+                        UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
                     }
                     else {
 
@@ -84,7 +87,10 @@ public class EnemyController : MonoBehaviour
                     if (distance < attackDistance) {
 
                         Attack(PlayerTarget);
-                        UiManager.Instance.TakeDamage();
+
+                        Stats playerStats = ray.LookLeft().GetComponent<Stats>();
+
+                        UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
                     }
                     else {
 
@@ -123,11 +129,6 @@ public class EnemyController : MonoBehaviour
     private void Attack(GameObject target)
     {
         characterAnimations.Punch();
-    
-
-        target.GetComponent<Stats>().TakeDamage(stats.damage);
-      
-
     }
 
     private void Jump()

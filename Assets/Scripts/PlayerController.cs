@@ -94,14 +94,21 @@ public class PlayerController : MonoBehaviour
         if (isFacingRight) {
 
             float distance = Vector3.Distance(transform.position, ray.LookRight().transform.position);
+
+            if (distance < 2f) {
+                Stats enemyStats = ray.LookRight().GetComponent<Stats>();
+
+                UIManager.Instance.TakeDamage(UIManager.CharacterType.Player2, enemyStats);
+            }
         }
         else {
 
             float distance = Vector3.Distance(transform.position, ray.LookLeft().transform.position);
 
             if (distance < 2f) {
-                ray.LookRight().GetComponent<Stats>().TakeDamage(stats.damage);
-                UiManager.Instance.TakeDamage();
+                Stats enemyStats = ray.LookLeft().GetComponent<Stats>();
+
+                UIManager.Instance.TakeDamage(UIManager.CharacterType.Player2, enemyStats);
             }
 
         }
