@@ -47,8 +47,8 @@ public class UIManager : MonoBehaviour
 
     public void PlayGame()
     {
-        PrefabUtility.SaveAsPrefabAsset(playercharacter, "Assets/Option.prefab");
-        SceneManager.LoadScene("");
+    //    PrefabUtility.SaveAsPrefabAsset(playercharacter, "Assets/Option.prefab");
+     //   SceneManager.LoadScene("");
     }
 
 
