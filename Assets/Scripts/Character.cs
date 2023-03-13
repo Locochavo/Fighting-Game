@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {
     public string Name;
-    public GameObject prefab;
+    public GameObject prefabPlayer;
+    public GameObject prefabEnemy;
     public Image icon;
     public Image backGroundImage;
 }

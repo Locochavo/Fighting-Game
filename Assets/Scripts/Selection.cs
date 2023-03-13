@@ -47,11 +47,13 @@ public class Selection : MonoBehaviour
     {
         if (player1 == null) return;
 
-        var p1 = Instantiate(player1.prefab);
+        var p1 = Instantiate(player1.prefabPlayer);
         p1.transform.position = spawnPlayer1.transform.position;
-        var p2 = Instantiate(player1.prefab);
+        var p2 = Instantiate(player2.prefabEnemy);
         p2.transform.position = spawnPlayer2.transform.position;
         gameObject.SetActive(false);
+
+        GameManager.INSTANCE.CloseGameMenu();
     }
 
 
