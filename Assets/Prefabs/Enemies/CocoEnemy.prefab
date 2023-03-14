@@ -146,6 +146,7 @@ MonoBehaviour:
   attackDistance: 0.8
   groundCheckRadius: 0.2
   jumpcooldown: 4
+  attackCooldown: 4
   groundCheckCollider: {fileID: 4500298916496873364}
   groundLayer:
     serializedVersion: 2

@@ -1,8 +1,4 @@
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EnemyController : MonoBehaviour
 {
@@ -24,7 +20,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackDistance = 2f;
     [SerializeField] private float groundCheckRadius = 0.2f;
     private float JumpTimer = 0f;
-    [SerializeField] private float jumpcooldown;
+    private float AttackTimer = 0f;
+    [SerializeField] private float jumpcooldown = 4;
+    [SerializeField] private float attackCooldown = 4;
     [SerializeField] Transform groundCheckCollider;
     [SerializeField] LayerMask groundLayer;
 
@@ -57,11 +55,16 @@ public class EnemyController : MonoBehaviour
                     Debug.Log("Right");
                     FacingRight();
                     if (distance < attackDistance) {
-                        Attack(PlayerTarget);
+
+                        AttackTimer += Time.deltaTime;
+                        if (AttackTimer > attackCooldown) {
+                            Attack();
+                            JumpTimer = 0;
+                        }
 
                         Stats playerStats = ray.LookRight().GetComponent<Stats>();
-
                         UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
+
                     }
                     else {
 
@@ -86,10 +89,13 @@ public class EnemyController : MonoBehaviour
                     FacingLeft();
                     if (distance < attackDistance) {
 
-                        Attack(PlayerTarget);
+                        AttackTimer += Time.deltaTime;
+                        if (AttackTimer > attackCooldown) {
+                            Attack();
+                            JumpTimer = 0;
+                        }
 
                         Stats playerStats = ray.LookLeft().GetComponent<Stats>();
-
                         UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
                     }
                     else {
@@ -126,7 +132,7 @@ public class EnemyController : MonoBehaviour
         isFacingRight = false;
     }
 
-    private void Attack(GameObject target)
+    private void Attack()
     {
         characterAnimations.Punch();
     }
