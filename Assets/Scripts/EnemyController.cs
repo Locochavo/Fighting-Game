@@ -59,11 +59,14 @@ public class EnemyController : MonoBehaviour
                         AttackTimer += Time.deltaTime;
                         if (AttackTimer > attackCooldown) {
                             Attack();
-                            JumpTimer = 0;
+
+
+                            Stats playerStats = ray.LookRight().GetComponent<Stats>();
+                            UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
+
+                            AttackTimer = 0;
                         }
 
-                        Stats playerStats = ray.LookRight().GetComponent<Stats>();
-                        UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
 
                     }
                     else {
@@ -92,11 +95,12 @@ public class EnemyController : MonoBehaviour
                         AttackTimer += Time.deltaTime;
                         if (AttackTimer > attackCooldown) {
                             Attack();
-                            JumpTimer = 0;
+                            Stats playerStats = ray.LookLeft().GetComponent<Stats>();
+                            UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
+                            AttackTimer = 0;
                         }
 
-                        Stats playerStats = ray.LookLeft().GetComponent<Stats>();
-                        UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
+         
                     }
                     else {
 
