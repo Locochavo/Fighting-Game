@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         characterAnimations = GetComponent<CharacterAnimations>();
         stats = GetComponent<Stats>();
         ray = GetComponent<Raycast>();
-      
+
     }
 
     private void Update()
@@ -54,16 +54,16 @@ public class PlayerController : MonoBehaviour
         if (move >= 0.1f || move <= -0.1f) {
 
             characterAnimations.states = CharacterAnimations.States.Walk;
-
-
-            if (!isFacingRight && move > 0f) {
-                Flip();
-            }
-            else if (isFacingRight && move < 0f) {
-                Flip();
-            }
         }
+
         else { characterAnimations.states = CharacterAnimations.States.Idle; }
+
+        if (isFacingRight && move > 0f) {
+            Flip();
+        }
+        if (!isFacingRight && move < 0f) {
+            Flip();
+        }
 
         GroundCheck();
     }
@@ -83,15 +83,11 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-
         characterAnimations.Punch();
-     
-
-
-
-        if (ray.LookRight() == null) return;
 
         if (isFacingRight) {
+
+            if (ray.LookRight() == null) return;
 
             float distance = Vector3.Distance(transform.position, ray.LookRight().transform.position);
 
@@ -102,6 +98,8 @@ public class PlayerController : MonoBehaviour
             }
         }
         else {
+
+            if (ray.LookLeft() == null) return;
 
             float distance = Vector3.Distance(transform.position, ray.LookLeft().transform.position);
 
