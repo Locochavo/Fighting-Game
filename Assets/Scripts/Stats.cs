@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Stats : MonoBehaviour
 {
     public int damage = 5;
     public int maxhealth = 100;
     public int currentHealth;
-
 
     // Start is called before the first frame update
     private void Start()
@@ -16,14 +17,15 @@ public class Stats : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void TakeDamage(int damage)
+    public int TakeDamage()
     {
-
         currentHealth -= damage;
 
         if (currentHealth < 1)
         {
             Debug.Log("Enemy is dead");
         }
+
+        return currentHealth;
     }
 }
