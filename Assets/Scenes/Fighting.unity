@@ -670,8 +670,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuPanel: {fileID: 8740285593385607301}
-  howtoplayPanel: {fileID: 1557446278}
+  howToPlayPanel: {fileID: 1557446278}
   characterSelectionPanel: {fileID: 739523977}
+  winAndLossPanel: {fileID: 829399195}
+  resumeButton: {fileID: 623556207}
+  isMainMenuOpen: 0
 --- !u!1 &353902130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,7 +1845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &623556208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1859,10 +1862,10 @@ RectTransform:
   m_Father: {fileID: 1737510457}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 305.61414, y: -82.76083}
+  m_SizeDelta: {x: 601.2283, y: 155.52167}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &623556209
 MonoBehaviour:
@@ -1908,9 +1911,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1623131555}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CloseGameMenu
+      - m_Target: {fileID: 283405200}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: GameMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3877,10 +3880,10 @@ RectTransform:
   m_Father: {fileID: 1737510457}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 305.61414, y: -243.2825}
+  m_SizeDelta: {x: 601.2283, y: 155.52167}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1293193740
 MonoBehaviour:
@@ -4214,10 +4217,10 @@ RectTransform:
   m_Father: {fileID: 1737510457}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 305.61414, y: -564.3258}
+  m_SizeDelta: {x: 601.2283, y: 155.52167}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424304695
 MonoBehaviour:
@@ -4973,11 +4976,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8319e882741fb24dac0c1364bdb72ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuPanel: {fileID: 8740285593385607301}
-  resumeButton: {fileID: 623556207}
-  WinandLossPanel: {fileID: 0}
+  _mainMenu: {fileID: 283405200}
+  _uiManager: {fileID: 1932385855}
   isGameStarted: 0
-  isMainMenuOpen: 1
 --- !u!224 &1623131557
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5037,10 +5038,10 @@ RectTransform:
   m_Father: {fileID: 1737510457}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 305.61414, y: -403.80417}
+  m_SizeDelta: {x: 601.2283, y: 155.52167}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1700907448
 MonoBehaviour:
@@ -5362,6 +5363,18 @@ PrefabInstance:
       value: 67.1
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -5379,15 +5392,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5395,7 +5408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 233
+      value: 233.00002
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6074,18 +6087,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 283405200}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: PlayGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1623131555}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -6315,10 +6316,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbarPlayer1: {fileID: 2601446095433181689}
   healthbarPlayer2: {fileID: 1296100382}
-  sr: {fileID: 0}
-  characters: []
-  selectedcharacter: 0
-  playercharacter: {fileID: 0}
 --- !u!1 &2000943243
 GameObject:
   m_ObjectHideFlags: 0
@@ -6841,6 +6838,18 @@ PrefabInstance:
       value: 67.1
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -6858,23 +6867,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -636
+      value: -635.9999
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 233
+      value: 233.00002
       objectReference: {fileID: 0}
     - target: {fileID: 2601446095236625626, guid: 1f588628ad1adde4488e8bf8f67aa07d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6930,4 +6939,4 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0

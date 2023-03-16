@@ -1,84 +1,14 @@
-using System;
-using System.Collections.Generic;
-using UnityEditor;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
+
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
-
-    //public Character[] characters;
-
-    //public Character currrentCharacter;
-
     [SerializeField] private HealhBar healthbarPlayer1;
     [SerializeField] private HealhBar healthbarPlayer2;
-    public SpriteRenderer sr;
-    public List<Sprite> characters= new List<Sprite>();
-    public int selectedcharacter = 0;
-    public GameObject playercharacter;
-
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
-    }
 
 
     public enum CharacterType { Player1, Player2 }
-
-    public void NextOption()
-    {
-        selectedcharacter = selectedcharacter + 1;
-        if( selectedcharacter == characters.Count )
-        {
-            selectedcharacter = 0;
-        }
-        sr.sprite = characters[selectedcharacter];
-    }
-
-    public void BackOption()
-    {
-        selectedcharacter = selectedcharacter- 1;
-        if(selectedcharacter < 0)
-        {
-            selectedcharacter = characters.Count - 1;
-        }
-        sr.sprite = characters[selectedcharacter];
-    }
-
-    public void PlayGame()
-    {
-    //    PrefabUtility.SaveAsPrefabAsset(playercharacter, "Assets/Option.prefab");
-     //   SceneManager.LoadScene("");
-    }
-
-
-
-
-
-    //private void Start()
-    //{
-    //    if (characters.Length > 0 && currrentCharacter == null)
-    //    {
-    //        currrentCharacter = characters[0];
-    //    }
-    //}
-
-    //public void SetCharacter(Character character)
-    //{
-    //    currrentCharacter= character;
-    //}
 
     public void TakeDamage(CharacterType characterType, Stats stats)
     {
@@ -92,7 +22,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
+    public void ResetHealthbars()
+    {
+        healthbarPlayer1.ResetHealthBar();
+        healthbarPlayer2.ResetHealthBar();
     }
+}
 
 

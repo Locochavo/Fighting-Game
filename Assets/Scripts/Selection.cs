@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+
 
 
 public class Selection : MonoBehaviour
@@ -9,12 +9,10 @@ public class Selection : MonoBehaviour
     [SerializeField] private Transform spawnPlayer1;
     [SerializeField] private Transform spawnPlayer2;
 
-
-
     private Character player1;
     private Character player2;
 
-
+    private List<GameObject> currentPlayers = new();
 
     private void Start()
     {
@@ -52,38 +50,26 @@ public class Selection : MonoBehaviour
         var p2 = Instantiate(player2.prefabEnemy);
         p2.transform.position = spawnPlayer2.transform.position;
         gameObject.SetActive(false);
+        GameManager.mainMenu.StartGame();
+        GameManager.uIManager.ResetHealthbars();
 
-        GameManager.INSTANCE.CloseGameMenu();
+        if (currentPlayers.Count > 0) {
+
+
+            foreach (var player in currentPlayers) {
+                Destroy(player);
+            }
+
+            currentPlayers.Clear();
+        }
+
+
+
+        currentPlayers.Add(p1);
+        currentPlayers.Add(p2);
+
+
     }
-
-
-
-
-
-    //private void Start()
-    //{
-    //    foreach (Character c in UIManager.Instance.characters)
-    //    {
-    //        GameObject option = Instantiate(optionPrefab, transform);
-    //        Button button = option.GetComponent<Button>();
-
-
-    //        button.onClick.AddListener(() =>
-    //        {
-    //            UIManager.Instance.SetCharacter(c);
-
-
-
-    //            if (selectedCharacter != null)
-    //            {
-    //                prevCharacter = selectedCharacter;
-    //            }
-
-    //            selectedCharacter = option.transform;
-
-    //        });
-
-
 }
 
 

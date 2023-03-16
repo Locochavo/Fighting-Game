@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.INSTANCE.isGameStarted) return;
+        if (stats.currentHealth < 1) return;
 
         GroundCheck();
         move = Input.GetAxis("Horizontal");
@@ -88,14 +90,14 @@ public class PlayerController : MonoBehaviour
         if (isFacingRight) {
 
             if (ray.LookRight() == null) return;
-       
+
 
             float distance = Vector3.Distance(transform.position, ray.LookRight().transform.position);
 
             if (distance < 2f) {
                 Stats enemyStats = ray.LookRight().GetComponent<Stats>();
 
-                UIManager.Instance.TakeDamage(UIManager.CharacterType.Player2, enemyStats);
+                GameManager.uIManager.TakeDamage(UIManager.CharacterType.Player2, enemyStats);
             }
         }
         else {
@@ -107,7 +109,7 @@ public class PlayerController : MonoBehaviour
             if (distance < 2f) {
                 Stats enemyStats = ray.LookLeft().GetComponent<Stats>();
 
-                UIManager.Instance.TakeDamage(UIManager.CharacterType.Player2, enemyStats);
+                GameManager.uIManager.TakeDamage(UIManager.CharacterType.Player2, enemyStats);
             }
 
         }

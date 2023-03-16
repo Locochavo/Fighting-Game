@@ -10,6 +10,11 @@ public class HealhBar : MonoBehaviour
         float health = currenthealth / maxhealth;
         _healthbarSprite.fillAmount = Mathf.Clamp(health, 0f, 1f);
     }
+
+    public void ResetHealthBar()
+    {
+        _healthbarSprite.fillAmount = Mathf.Clamp(1f, 0f, 1f);
+    }
 }
 
 

@@ -40,6 +40,9 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.INSTANCE.isGameStarted) return;
+        if (stats.currentHealth < 1) return;
+
         AILogic();
         GroundCheck();
 
@@ -66,12 +69,10 @@ public class EnemyController : MonoBehaviour
 
 
                             Stats playerStats = ray.LookRight().GetComponent<Stats>();
-                            UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
+                            GameManager.uIManager.TakeDamage(UIManager.CharacterType.Player1, playerStats);
 
                             AttackTimer = 0;
                         }
-
-
                     }
                     else {
 
@@ -100,11 +101,9 @@ public class EnemyController : MonoBehaviour
                         if (AttackTimer > attackCooldown) {
                             Attack();
                             Stats playerStats = ray.LookLeft().GetComponent<Stats>();
-                            UIManager.Instance.TakeDamage(UIManager.CharacterType.Player1, playerStats);
+                            GameManager.uIManager.TakeDamage(UIManager.CharacterType.Player1, playerStats);
                             AttackTimer = 0;
-                        }
-
-         
+                        }       
                     }
                     else {
 
@@ -118,14 +117,10 @@ public class EnemyController : MonoBehaviour
 
                 }
 
-
-
                 JumpTimer += Time.deltaTime;
                 if (JumpTimer > jumpcooldown) {
                     Jump();
-                    JumpTimer = 0;
-
-               
+                    JumpTimer = 0;               
                 }
             }
         }
