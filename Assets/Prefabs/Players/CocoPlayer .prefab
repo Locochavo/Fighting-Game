@@ -201,7 +201,7 @@ MonoBehaviour:
   jumpspeed: 4
   isJumping: 0
   isGrounded: 0
-  isFacingRight: 0
+  isFacingRight: 1
   groundCheckRadius: 0.2
   groundCheckCollider: {fileID: 8761893235969713412}
   groundLayer:

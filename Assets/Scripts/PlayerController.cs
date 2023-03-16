@@ -58,10 +58,10 @@ public class PlayerController : MonoBehaviour
 
         else { characterAnimations.states = CharacterAnimations.States.Idle; }
 
-        if (isFacingRight && move > 0f) {
+        if (isFacingRight && move < 0f) {
             Flip();
         }
-        if (!isFacingRight && move < 0f) {
+        if (!isFacingRight && move > 0f) {
             Flip();
         }
 
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         if (isFacingRight) {
 
             if (ray.LookRight() == null) return;
+       
 
             float distance = Vector3.Distance(transform.position, ray.LookRight().transform.position);
 

@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
         sr.sprite = characters[selectedcharacter];
     }
 
-    public void BackOpttion()
+    public void BackOption()
     {
         selectedcharacter = selectedcharacter- 1;
         if(selectedcharacter < 0)
@@ -92,4 +92,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-}
+
+    }
+
+

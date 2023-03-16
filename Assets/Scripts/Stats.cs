@@ -23,6 +23,7 @@ public class Stats : MonoBehaviour
 
         if (currentHealth < 1)
         {
+            GameManager.INSTANCE.WinPanel();
             Debug.Log("Enemy is dead");
         }
 

@@ -172,7 +172,7 @@ MonoBehaviour:
   isJumping: 0
   isFacingRight: 0
   isGrounded: 0
-  jumpspeed: 4
+  jumpspeed: 7
   movementSpeed: 4
   attackDistance: 0.8
   groundCheckRadius: 0.2

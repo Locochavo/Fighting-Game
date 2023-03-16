@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,8 +6,11 @@ public class GameManager : MonoBehaviour
     public static GameManager INSTANCE;
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject resumeButton;
+    [SerializeField] private GameObject WinandLossPanel;
+
     public bool isGameStarted;
     public bool isMainMenuOpen;
+  
 
 
     private void Awake()
@@ -41,6 +45,22 @@ public class GameManager : MonoBehaviour
         isGameStarted = true;
       
     }
+
+    public void WinPanel()
+    {
+        WinandLossPanel.SetActive(true);
+    }
+
+    public void LossPanel()
+    {
+        WinandLossPanel.SetActive(false);
+    }
+
+    public void RestartGame()
+    {
+        mainMenuPanel.SetActive(false);
+    }
+
 
     private void Update()
     {
@@ -77,8 +97,13 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+
     }
 
 
+
 }
+
+
+
 

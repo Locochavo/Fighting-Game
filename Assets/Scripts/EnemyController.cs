@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     public bool isJumping;
     public bool isFacingRight;
     public bool isGrounded;
+
+    private float move;
     private Rigidbody2D rb;
     private GameObject PlayerTarget;
     [SerializeField] private float jumpspeed;
@@ -47,6 +49,8 @@ public class EnemyController : MonoBehaviour
     {
         if (worldLimtmin < transform.position.x && worldLimtmax > transform.position.x) {
             if (isFacingRight) {
+
+
                 if (ray.LookRight().tag == "Player") {
                     PlayerTarget = ray.LookRight();
 
@@ -114,10 +118,14 @@ public class EnemyController : MonoBehaviour
 
                 }
 
+
+
                 JumpTimer += Time.deltaTime;
                 if (JumpTimer > jumpcooldown) {
                     Jump();
                     JumpTimer = 0;
+
+               
                 }
             }
         }
@@ -127,13 +135,19 @@ public class EnemyController : MonoBehaviour
     private void FacingRight()
     {
         isFacingRight = true;
-        transform.Rotate(new Vector3(0, 0, 0));
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
+        //transform.Rotate(new Vector3(0, 0, 0));
     }
 
     private void FacingLeft()
     {
-        transform.Rotate(new Vector3(0, 0, 0));
+        Vector3 localScale = transform.localScale;
+        localScale.x *= 1f;
+        transform.localScale = localScale;
         isFacingRight = false;
+        //transform.Rotate(new Vector3(0, 0, 0));
     }
 
     private void Attack()
