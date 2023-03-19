@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private HealhBar healthbarPlayer1;
     [SerializeField] private HealhBar healthbarPlayer2;
+  
+
 
 
     public enum CharacterType { Player1, Player2 }
@@ -15,10 +17,12 @@ public class UIManager : MonoBehaviour
         if (characterType == CharacterType.Player1) {
 
             healthbarPlayer1.UpdateHealthBar(stats.TakeDamage(), stats.maxhealth);
+
         }
         if (characterType == CharacterType.Player2) {
 
             healthbarPlayer2.UpdateHealthBar(stats.TakeDamage(), stats.maxhealth);
+           
         }
     }
 
