@@ -28,14 +28,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Transform groundCheckCollider;
     [SerializeField] LayerMask groundLayer;
 
+    public GameObject leftTarget;
+    public GameObject rightTarget;
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         characterAnimations = GetComponent<CharacterAnimations>();
         ray = GetComponent<Raycast>();
         stats = GetComponent<Stats>();
-        isFacingRight = true;
-
+        Flip();
     }
 
     private void Update()
@@ -51,98 +54,117 @@ public class EnemyController : MonoBehaviour
     private void AILogic()
     {
         if (worldLimtmin < transform.position.x && worldLimtmax > transform.position.x) {
-            if (isFacingRight) {
+
+            leftTarget = ray.LookLeft();
+            rightTarget = ray.LookRight();
+
+            if (ray.LookRight().tag == "Player") {
+                PlayerTarget = ray.LookRight();
+
+            
+
+                float distance = Vector3.Distance(transform.position, ray.LookRight().transform.position);
+
+                if(!isFacingRight) {
+                    isFacingRight = true;
+                    Flip();
+                }
+
+                Debug.Log("Right");
+
+                if (distance < attackDistance) {
+
+                    AttackTimer += Time.deltaTime;
+                    if (AttackTimer > attackCooldown) {
+                        Attack();
 
 
-                if (ray.LookRight().tag == "Player") {
-                    PlayerTarget = ray.LookRight();
+                        Stats playerStats = ray.LookRight().GetComponent<Stats>();
+                        GameManager.uIManager.TakeDamage(UIManager.CharacterType.Player1, playerStats);
 
-                    float distance = Vector3.Distance(transform.position, ray.LookRight().transform.position);
-
-                    Debug.Log("Right");
-                    FacingRight();
-                    if (distance < attackDistance) {
-
-                        AttackTimer += Time.deltaTime;
-                        if (AttackTimer > attackCooldown) {
-                            Attack();
-
-
-                            Stats playerStats = ray.LookRight().GetComponent<Stats>();
-                            GameManager.uIManager.TakeDamage(UIManager.CharacterType.Player1, playerStats);
-
-                            AttackTimer = 0;
-                        }
-                    }
-                    else {
-
-                        transform.position = Vector2.MoveTowards(transform.position, ray.LookRight().transform.position, movementSpeed * Time.deltaTime);
-                        characterAnimations.states = CharacterAnimations.States.Walk;
-
+                        AttackTimer = 0;
                     }
                 }
                 else {
 
-                    FacingLeft();
-                    characterAnimations.states = CharacterAnimations.States.Idle;
+                    transform.position = Vector2.MoveTowards(transform.position, ray.LookRight().transform.position, movementSpeed * Time.deltaTime);
+                    characterAnimations.states = CharacterAnimations.States.Walk;
+
+                }
+            }
+            else if (ray.LookLeft().tag == "Player") {
+                PlayerTarget = ray.LookLeft();
+
+                float distance = Vector3.Distance(transform.position, ray.LookLeft().transform.position);
+
+                if (isFacingRight) {
+                    isFacingRight = false;
+                    Flip();
+                }
+
+                isFacingRight = false;
+
+                Debug.Log("Left");
+                if (distance < attackDistance) {
+
+                    AttackTimer += Time.deltaTime;
+                    if (AttackTimer > attackCooldown) {
+                        Attack();
+                        Stats playerStats = ray.LookLeft().GetComponent<Stats>();
+                        GameManager.uIManager.TakeDamage(UIManager.CharacterType.Player1, playerStats);
+                        AttackTimer = 0;
+                    }
+                }
+                else {
+
+                    transform.position = Vector2.MoveTowards(transform.position, ray.LookLeft().transform.position, movementSpeed * Time.deltaTime);
+                    characterAnimations.states = CharacterAnimations.States.Walk;
                 }
             }
             else {
-                if (ray.LookLeft().tag == "Player") {
-                    PlayerTarget = ray.LookLeft();
 
-                    float distance = Vector3.Distance(transform.position, ray.LookLeft().transform.position);
+                isFacingRight = true;
+                //     Flip();
+            }
 
-                    Debug.Log("Left");
-                    FacingLeft();
-                    if (distance < attackDistance) {
-
-                        AttackTimer += Time.deltaTime;
-                        if (AttackTimer > attackCooldown) {
-                            Attack();
-                            Stats playerStats = ray.LookLeft().GetComponent<Stats>();
-                            GameManager.uIManager.TakeDamage(UIManager.CharacterType.Player1, playerStats);
-                            AttackTimer = 0;
-                        }       
-                    }
-                    else {
-
-                        transform.position = Vector2.MoveTowards(transform.position, ray.LookLeft().transform.position, movementSpeed * Time.deltaTime);
-                        characterAnimations.states = CharacterAnimations.States.Walk;
-                    }
-                }
-                else {
-
-                    FacingRight();
-
-                }
-
+            if (isGrounded) {
                 JumpTimer += Time.deltaTime;
                 if (JumpTimer > jumpcooldown) {
                     Jump();
-                    JumpTimer = 0;               
+                    JumpTimer = 0;
                 }
             }
+        }
+
+        else {
+
+            //     Flip();
+            isFacingRight = false;
+            characterAnimations.states = CharacterAnimations.States.Idle;
         }
     }
 
 
-    private void FacingRight()
+
+
+
+    //private void FacingRight()
+    //{
+    //    isFacingRight = true;
+    //    transform.Rotate(new Vector3(0, 0, 0));
+    //}
+
+    //private void FacingLeft()
+    //{
+    //    isFacingRight = false;
+    //    transform.Rotate(new Vector3(0, 180, 0));
+    //}
+
+    private void Flip()
     {
-        isFacingRight = true;
         Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
         transform.localScale = localScale;
-        //transform.Rotate(new Vector3(0, 0, 0));
-    }
-
-    private void FacingLeft()
-    {
-        Vector3 localScale = transform.localScale;
-        localScale.x *= 1f;
-        transform.localScale = localScale;
-        isFacingRight = false;
-        //transform.Rotate(new Vector3(0, 0, 0));
     }
 
     private void Attack()
